@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Systemic Vulnerabilities in Canada</title>
+  <meta name="description" content="An interactive map of how climate, infrastructure, health, housing, food and institutional crises amplify one another across Canada.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='11' cy='12' r='8' fill='none' stroke='%2313699a'/%3E%3Ccircle cx='21' cy='12' r='8' fill='none' stroke='%23df332f'/%3E%3Ccircle cx='16' cy='21' r='8' fill='none' stroke='%23111111'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="brand" id="homeButton" aria-label="Reset the diagram">
+      <span class="sheet">AR8101 // MAHIN HAYNES</span>
+      <strong>SYSTEMIC VULNERABILITIES IN CANADA</strong>
+    </button>
+    <div class="top-actions">
+      <button id="aboutButton" class="quiet-button">What is polycrisis?</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="canvas-shell" aria-label="Interactive polycrisis diagram">
+      <div class="field-filter" id="fieldFilter" aria-label="Filter by system"></div>
+      <svg id="diagram" viewBox="0 0 1450 940" role="img" aria-labelledby="diagramTitle diagramDesc">
+        <title id="diagramTitle">Interactive map of crisis entanglement across Canadian systems</title>
+        <desc id="diagramDesc">Six overlapping fields contain chronic stresses, acute stresses, system crises and shared dependencies. Connections show how pressure moves between systems and returns through feedback.</desc>
+        <defs>
+          <marker id="arrow-blue" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7" fill="none" stroke="#176a99" stroke-width="1.2"/></marker>
+          <marker id="arrow-red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7" fill="none" stroke="#df332f" stroke-width="1.2"/></marker>
+          <marker id="arrow-black" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7" fill="none" stroke="#171717" stroke-width="1.2"/></marker>
+          <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <g id="scene">
+          <g id="datumLayer"></g>
+          <g id="fieldLayer"></g>
+          <g id="edgeLayer"></g>
+          <g id="knotLayer"></g>
+          <g id="nodeLayer"></g>
+          <g id="annotationLayer"></g>
+        </g>
+      </svg>
+      <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+      <div class="zoom-controls" aria-label="Diagram view controls">
+        <button id="zoomOut" aria-label="Zoom out">−</button>
+        <button id="fitView">FIT</button>
+        <button id="zoomIn" aria-label="Zoom in">+</button>
+      </div>
+    </section>
+
+    <aside class="detail-panel" id="detailPanel" aria-live="polite">
+      <button id="closePanel" class="panel-close" aria-label="Close information panel">×</button>
+      <div id="detailContent"></div>
+    </aside>
+  </main>
+
+  <footer class="legend-bar">
+    <div class="legend-group"><span class="legend-title">CONDITION</span><span><i class="mark stress"></i>chronic stress</span><span><i class="mark acute"></i>acute stress</span><span><i class="mark crisis"></i>system crisis</span><span><i class="mark dependency"></i>shared dependency</span></div>
+    <div class="legend-group"><span class="legend-title">RELATIONSHIP</span><span><i class="line internal"></i>within a system</span><span><i class="line transfer"></i>cross-system transfer</span><span><i class="line feedback"></i>feedback / hypothesis</span></div>
+    <div class="evidence-note">Dashed lines show conditional relationships. Coinciding conditions are kept separate from supported causal links.</div>
+  </footer>
+
+  <dialog id="aboutDialog">
+    <div class="dialog-head"><div><span class="sheet">DEFINITION</span><h2>How separate crises become a polycrisis</h2></div><button data-close-dialog aria-label="Close definition">×</button></div>
+    <div class="about-copy">
+      <p>Several crises can occur during the same period without forming a polycrisis. The condition changes when one crisis alters another system's existing stress or its ability to recover. Wildfire displacement may enter a housing market that already has little room. During another event, heat may raise electricity demand while smoke increases demand for healthcare.</p>
+      <p>A linear cascade can occur within this larger condition. The diagram treats it as one possible pathway. Pressure may arrive from a different system, and the effects may return to conditions that existed before the initial event.</p>
+      <p class="source-line"><a href="https://adamtooze.com/2022/06/24/chartbook-130-defining-polycrisis-from-crisis-pictures-to-the-crisis-matrix/" target="_blank" rel="noreferrer">Adam Tooze, "Defining polycrisis"</a><br><a href="https://cascadeinstitute.org/technical-paper/what-is-a-global-polycrisis/" target="_blank" rel="noreferrer">Lawrence, Janzwood & Homer-Dixon, "What is a global polycrisis?"</a></p>
+    </div>
+  </dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
