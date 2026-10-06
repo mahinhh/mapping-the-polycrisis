@@ -1,4 +1,4 @@
-import { systems, nodes, links, entanglements, sources } from './data.js';
+import { systems, nodes, links, entanglements, sources } from './data.js?v=20261006-2';
 
 const NS = 'http://www.w3.org/2000/svg';
 const svg = document.querySelector('#diagram');
